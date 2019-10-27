@@ -6,8 +6,8 @@ class Stack:
        self.stack.append(item)
    def pop(self):
        x=len(self.stack)-1
-       y=self.stack[x]
-       del self.stack[x]
+       y=self.stack[-1]
+       del self.stack[-1]
        return y
 
 test_stack = Stack()
