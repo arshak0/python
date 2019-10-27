@@ -5,7 +5,6 @@ class Stack:
          self.items.append(item)
    def pop(self):
        x=len(self.items)-1
-       y=self.items[x]
        del self.items[x]
        return self.items[-1]
 
