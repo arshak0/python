@@ -9,14 +9,11 @@ class Stack:
        del self.stack[-1]
        return y
 
-a=input()
-b=input()
-c=input()
 
 test_stack = Stack()
-test_stack.push(a)
-test_stack.push(b)
-test_stack.push(c)
+test_stack.push(55)
+test_stack.push(66)
+test_stack.push(77)
 
 print(test_stack.pop())
 print(test_stack.stack)
