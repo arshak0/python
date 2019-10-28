@@ -8,7 +8,7 @@ class Stack:
        del self.stack[-1]
        return y
    def max(self):
-       z=0
+       z=self.stack[0]
        for i in self.stack:
            if i > z:
                z = i
@@ -16,7 +16,7 @@ class Stack:
 
 test_stack = Stack()
 
-for i in range(110,-50,-15):
+for i in range(-10,-5):
     test_stack.push(i)
 
 print(test_stack.stack)
