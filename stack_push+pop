@@ -4,7 +4,6 @@ class Stack:
    def push(self, item):
       self.stack.append(item)
    def pop(self):
-       x=len(self.stack)-1
        y=self.stack[-1]
        del self.stack[-1]
        return y
