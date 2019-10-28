@@ -7,12 +7,17 @@ class Stack:
        y=self.stack[-1]
        del self.stack[-1]
        return y
-
+   def max(self):
+       z=0
+       for i in self.stack:
+           if i > z:
+               z = i
+       return z
 
 test_stack = Stack()
-test_stack.push(55)
-test_stack.push(66)
-test_stack.push(77)
 
-print(test_stack.pop())
+for i in range(110,-50,-15):
+    test_stack.push(i)
+
 print(test_stack.stack)
+print(test_stack.max())
