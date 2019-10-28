@@ -8,15 +8,20 @@ class Stack:
        del self.stack[-1]
        return y
    def max(self):
+    try:
        z=self.stack[0]
        for i in self.stack:
            if i > z:
                z = i
        return z
+    except:
+       return "np.nan"
 
 test_stack = Stack()
 
 for i in range(-10,-5):
+    test_stack.push(i)
+for i in range(2,50):
     test_stack.push(i)
 
 print(test_stack.stack)
