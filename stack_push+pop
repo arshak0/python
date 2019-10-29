@@ -1,9 +1,13 @@
 class Stack:
    maxx="np.nan"
-   stack=[]
+   def __init__(self):
+     self.stack=[]
 
    def push(self, item):
        self.stack.append(item)
+       self._update_max(item)
+
+   def _update_max(self, item):
        if len(self.stack)==1:
            self.maxx = item
        elif item > self.maxx:
