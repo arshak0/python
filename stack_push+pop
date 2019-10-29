@@ -27,9 +27,6 @@ class Stack:
    def pop(self):
        try:
            y=self.stack[-1]
-           if y==self.maxx:
-
-
            del self.stack[-1]
            return y
        except:
@@ -37,21 +34,17 @@ class Stack:
 
    def get_max(self):
        return self.maxx
+   def get_min(self):
+       return self.minn
 
 test_stack = Stack()
 
-for i in range(20,-5,-1):
+for i in range(20,-10,-1):
     test_stack.push(i)
-for i in range(2,28):
+for i in range(2,18):
     test_stack.push(i)
 
 print(test_stack.stack)
-print(test_stack.maxx)
-print(test_stack.minn)
+print(test_stack.get_max())
+print(test_stack.get_min())
 print(test_stack.stack_sort)
-
-
-print("\n")
-aa=[0,1,2]
-aa.insert(0,113)
-print(aa)
