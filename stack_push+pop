@@ -21,7 +21,7 @@ class Stack:
        except:
            return "no elements in stack"
 
-   def max(self):
+   def get_max(self):
     try:
        z=self.stack[0]
        for i in self.stack:
