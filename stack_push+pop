@@ -1,7 +1,7 @@
 class Stack:
-   maxx=0
-   def __init__(self):
-       self.stack = []
+   maxx="np.nan"
+   stack=[]
+
    def push(self, item):
        self.stack.append(item)
        if len(self.stack)==1:
@@ -10,9 +10,13 @@ class Stack:
            self.maxx = item
 
    def pop(self):
-       y=self.stack[-1]
-       del self.stack[-1]
-       return y
+       try:
+           y=self.stack[-1]
+           del self.stack[-1]
+           return y
+       except:
+           return "no elements in stack"
+
    def max(self):
     try:
        z=self.stack[0]
@@ -27,9 +31,8 @@ test_stack = Stack()
 
 for i in range(20,-5,-1):
     test_stack.push(i)
-for i in range(2,28):
+for i in range(2,18):
     test_stack.push(i)
-
 
 print(test_stack.stack)
 print(test_stack.maxx)
