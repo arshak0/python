@@ -22,14 +22,7 @@ class Stack:
            return "no elements in stack"
 
    def get_max(self):
-    try:
-       z=self.stack[0]
-       for i in self.stack:
-           if i > z:
-               z = i
-       return z
-    except:
-       return "np.nan"
+       return self.maxx
 
 test_stack = Stack()
 
