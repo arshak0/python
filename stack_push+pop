@@ -13,14 +13,15 @@ class Stack:
    def _update_max(self, item):
        if len(self.stack)==1:
            self.maxx = item
-       elif item > self.maxx:
+           self.stack_sort.append(self.maxx)
+       elif item >= self.maxx:
            self.maxx = item
            self.stack_sort.append(self.maxx)
 
    def _update_min(self, item):
        if len(self.stack)==1:
            self.minn = item
-       elif item < self.minn:
+       elif item <= self.minn:
            self.minn = item
            self.stack_sort.insert(0,self.minn)
 
@@ -28,9 +29,10 @@ class Stack:
        try:
            y=self.stack[-1]
            del self.stack[-1]
-           return y
+           if y==self.maxx:
+              return y
        except:
-           return "no elements in stack"
+              return "no elements in stack"
 
    def get_max(self):
        return self.maxx
@@ -43,6 +45,7 @@ for i in range(20,-10,-1):
     test_stack.push(i)
 for i in range(2,18):
     test_stack.push(i)
+
 
 print(test_stack.stack)
 print(test_stack.get_max())
