@@ -3,11 +3,11 @@ class Stack:
    def __init__(self):
        self.stack = []
    def push(self, item):
-       if not self.stack:
+       self.stack.append(item)
+       if len(self.stack)==1:
            self.maxx = item
        elif item > self.maxx:
            self.maxx = item
-       self.stack.append(item)
 
    def pop(self):
        y=self.stack[-1]
@@ -27,7 +27,7 @@ test_stack = Stack()
 
 for i in range(20,-5,-1):
     test_stack.push(i)
-for i in range(2,18):
+for i in range(2,28):
     test_stack.push(i)
 
 
