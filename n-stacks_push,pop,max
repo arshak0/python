@@ -1,4 +1,8 @@
 class Stack:
+
+   genMax = []
+   genDict = {}
+
    def __init__(self):
      self.stack=[]
      self.dict={}
@@ -6,56 +10,99 @@ class Stack:
 
    def push(self, item):
        self.stack.append(item)
-       self._update_dict(item)
-       self._update_max(item)
+       self.UpdateDict(item)
+       self.UpdateMax(item)
+       self.UpdateGenDict(item)
+       self.UpdateGenMax(item)
 
-   def _update_dict(self, item):
+   def UpdateDict(self, item):
        if item in self.dict:
            self.dict[item]=self.dict[item]+1
        else:
            self.dict[item]=1
 
-   def _update_max(self, item):
+   def UpdateGenDict(self, item):
+       if item in self.genDict:
+           self.genDict[item]=self.genDict[item]+1
+       else:
+           self.genDict[item]=1
+
+   def UpdateMax(self, item):
        if len(self.max)==0:
            self.max.append(item)
        elif item > self.max[-1]:
            self.max.append(item)
 
+   def UpdateGenMax(self, item):
+       if len(self.genMax)==0:
+           self.genMax.append(item)
+       elif item > self.genMax[-1]:
+           self.genMax.append(item)
+
    def pop(self):
        try:
            y=self.stack[-1]
            del self.stack[-1]
-           self._update_max_pop(y)
-           self._update_dict_pop(y)
+           self.UpdateMaxPop(y)
+           self.UpdateDictPop(y)
+           self.UpdateGenMaxPop(y)
+           self.UpdateGenDictPop(y)
            return y
        except:
               return "no elements in stack"
 
-   def _update_max_pop(self,y):
+   def UpdateMaxPop(self,y):
        if y==self.max[-1] and self.dict[y]==1:
            del self.max[-1]
 
-   def _update_dict_pop(self, y):
+   def UpdateDictPop(self, y):
        if self.dict[y]>1:
            self.dict[y]=self.dict[y]-1
        else:
            del self.dict[y]
 
-   def get_max(self):
+   def UpdateGenMaxPop(self,y):
+       if y==self.genMax[-1] and self.genDict[y]==1:
+           del self.genMax[-1]
+
+   def UpdateGenDictPop(self, y):
+       if self.genDict[y]>1:
+           self.genDict[y]=self.genDict[y]-1
+       else:
+           del self.genDict[y]
+
+   def getMax(self):
        return self.max[-1]
 
-test_stack = Stack()
+Stack1 = Stack()
+Stack2 = Stack()
+Stack3 = Stack()
 
+for i in range(-4, 1):
+    Stack1.push(i)
+for i in range (0,9):
+    Stack2.push(i)
+for i in range(0, 8):
+    Stack3.push(i)
+Stack1.push(88)
+Stack3.pop()
+Stack2.pop()
 
-test_stack.push(4)
-test_stack.push(16)
-test_stack.push(4)
-test_stack.push(16)
-test_stack.push(8)
-test_stack.pop()
+print(Stack1.stack)
+print(Stack1.dict)
+print(Stack1.getMax())
+print(Stack1.max)
+print("\n")
+print(Stack2.stack)
+print(Stack2.dict)
+print(Stack2.getMax())
+print(Stack2.max)
+print("\n")
+print(Stack3.stack)
+print(Stack3.dict)
+print(Stack3.getMax())
+print(Stack3.max)
+print("\n")
+print(Stack.genMax)
+print(Stack.genDict)
 
-
-print(test_stack.stack)
-print(test_stack.max)
-print(test_stack.get_max())
-print(test_stack.dict)
