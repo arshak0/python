@@ -1,0 +1,61 @@
+class Stack:
+   def __init__(self):
+     self.stack=[]
+     self.dict={}
+     self.max=[]
+
+   def push(self, item):
+       self.stack.append(item)
+       self._update_dict(item)
+       self._update_max(item)
+
+   def _update_dict(self, item):
+       if item in self.dict:
+           self.dict[item]=self.dict[item]+1
+       else:
+           self.dict[item]=1
+
+   def _update_max(self, item):
+       if len(self.max)==0:
+           self.max.append(item)
+       elif item > self.max[-1]:
+           self.max.append(item)
+
+   def pop(self):
+       try:
+           y=self.stack[-1]
+           del self.stack[-1]
+           self._update_max_pop(y)
+           self._update_dict_pop(y)
+           return y
+       except:
+              return "no elements in stack"
+
+   def _update_max_pop(self,y):
+       if y==self.max[-1] and self.dict[y]==1:
+           del self.max[-1]
+
+   def _update_dict_pop(self, y):
+       if self.dict[y]>1:
+           self.dict[y]=self.dict[y]-1
+       else:
+           del self.dict[y]
+
+   def get_max(self):
+       return self.max[-1]
+
+test_stack = Stack()
+
+
+test_stack.push(4)
+test_stack.push(16)
+test_stack.push(4)
+test_stack.push(16)
+test_stack.push(8)
+test_stack.pop()
+
+
+print(test_stack.stack)
+print(test_stack.max)
+print(test_stack.get_max())
+print(test_stack.dict)
