@@ -1,108 +1,115 @@
 class Stack:
 
-   genMax = []
-   genDict = {}
+   __gen_max_list = []
+   gen_dict = {}
+   gen_non_private_max_list = []
 
    def __init__(self):
      self.stack=[]
      self.dict={}
-     self.max=[]
+     self.max_list=[]
 
    def push(self, item):
        self.stack.append(item)
-       self.UpdateDict(item)
-       self.UpdateMax(item)
-       self.UpdateGenDict(item)
-       self.UpdateGenMax(item)
+       self.update_dict(item)
+       self.update_gen_dict(item)
+       self.update_max_list(item)
+       self.update_gen_max_list(item)
 
-   def UpdateDict(self, item):
+   def update_dict(self, item):
        if item in self.dict:
            self.dict[item]=self.dict[item]+1
        else:
            self.dict[item]=1
 
-   def UpdateGenDict(self, item):
-       if item in self.genDict:
-           self.genDict[item]=self.genDict[item]+1
+   def update_gen_dict(self, item):
+       if item in self.gen_dict:
+           self.gen_dict[item]=self.gen_dict[item]+1
        else:
-           self.genDict[item]=1
+           self.gen_dict[item]=1
 
-   def UpdateMax(self, item):
-       if len(self.max)==0:
-           self.max.append(item)
-       elif item > self.max[-1]:
-           self.max.append(item)
+   def update_max_list(self, item):
+       if len(self.max_list)==0:
+           self.max_list.append(item)
+       elif item > self.max_list[-1]:
+           self.max_list.append(item)
 
-   def UpdateGenMax(self, item):
-       if len(self.genMax)==0:
-           self.genMax.append(item)
-       elif item > self.genMax[-1]:
-           self.genMax.append(item)
+   def update_gen_max_list(self, item):
+       if len(self.__gen_max_list)==0:
+           self.__gen_max_list.append(item)
+       elif item > self.__gen_max_list[-1]:
+           self.__gen_max_list.append(item)
 
    def pop(self):
-       try:
+       if self.stack:
            y=self.stack[-1]
            del self.stack[-1]
-           self.UpdateMaxPop(y)
-           self.UpdateDictPop(y)
-           self.UpdateGenMaxPop(y)
-           self.UpdateGenDictPop(y)
+           self.update_max_list_pop(y)
+           self.update_dict_pop(y)
+           self.update_gen_max_list_pop(y)
+           self.update_gen_dict_pop(y)
            return y
-       except:
-              return "no elements in stack"
 
-   def UpdateMaxPop(self,y):
-       if y==self.max[-1] and self.dict[y]==1:
-           del self.max[-1]
 
-   def UpdateDictPop(self, y):
+   def update_max_list_pop(self,y):
+       if y==self.max_list[-1] and self.dict[y]==1:
+           del self.max_list[-1]
+
+   def update_dict_pop(self, y):
        if self.dict[y]>1:
            self.dict[y]=self.dict[y]-1
        else:
            del self.dict[y]
 
-   def UpdateGenMaxPop(self,y):
-       if y==self.genMax[-1] and self.genDict[y]==1:
-           del self.genMax[-1]
+   def update_gen_max_list_pop(self,y):
+       if y in self.__gen_max_list and self.gen_dict[y]==1:
+           del self.__gen_max_list[-1]
 
-   def UpdateGenDictPop(self, y):
-       if self.genDict[y]>1:
-           self.genDict[y]=self.genDict[y]-1
+   def update_gen_dict_pop(self, y):
+       if self.gen_dict[y]>1:
+           self.gen_dict[y]=self.gen_dict[y]-1
        else:
-           del self.genDict[y]
+           del self.gen_dict[y]
 
-   def getMax(self):
-       return self.max[-1]
+   def get_max(self):
+       try:
+           return self.max_list[-1]
+       except IndexError:
+           raise IndexError('Trying to get a maximum from an empty stack!')
 
-Stack1 = Stack()
-Stack2 = Stack()
-Stack3 = Stack()
+   def get_gen_max(self):
+       return self.__gen_max_list[-1]
 
-for i in range(-4, 1):
-    Stack1.push(i)
-for i in range (0,9):
-    Stack2.push(i)
-for i in range(0, 8):
-    Stack3.push(i)
-Stack1.push(88)
-Stack3.pop()
-Stack2.pop()
+   def get_max_list(self):
+       self.gen_non_private_max_list = self.__gen_max_list
 
-print(Stack1.stack)
-print(Stack1.dict)
-print(Stack1.getMax())
-print(Stack1.max)
-print("\n")
-print(Stack2.stack)
-print(Stack2.dict)
-print(Stack2.getMax())
-print(Stack2.max)
-print("\n")
-print(Stack3.stack)
-print(Stack3.dict)
-print(Stack3.getMax())
-print(Stack3.max)
-print("\n")
-print(Stack.genMax)
-print(Stack.genDict)
+if __name__ == '__main__':
+   Stack1 = Stack()
+   Stack2 = Stack()
 
+Stack1.push(1)
+Stack1.push(5)
+Stack2.push(10)
+Stack1.pop()
+
+
+## print(Stack1.stack)
+## print(Stack1.dict)
+## print(Stack1.get_max())
+## print(Stack1.max_list)
+## print("\n")
+## print(Stack2.stack)
+## print(Stack2.dict)
+## print(Stack2.get_max())
+## print(Stack2.max_list)
+## print("\n")
+## print(Stack3.stack)
+## print(Stack3.dict)
+## print(Stack3.get_max())
+## print(Stack3.max_list)
+## print("\n")
+
+Stack2.get_max_list()
+print(Stack2.gen_non_private_max_list)
+print(Stack.gen_dict)
+Stack1.get_gen_max()
